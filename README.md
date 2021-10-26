@@ -1,4 +1,6 @@
-# IR CS Project - ODI Cricketers Search
+# IR CS4642 Project - ODI Cricketers Search
+- M.H. Lamahewage
+- 170342N
 
 ## Running elastic search
 - `.\bin\elasticsearch.bat`
