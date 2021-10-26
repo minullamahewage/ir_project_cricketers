@@ -36,5 +36,5 @@ python app.py
 ### Additional Notes
 - Fuzzy string matching done using FuzzyWuzzy package which uses Levenshtein Distance.
 - BeautifulSoup4 used for scraping.
-- Data source: ESPNCrinfo
+- Data source: ESPNCricnfo - https://stats.espncricinfo.com/ci/engine/records/index.html
 - Corpus includes the top 100 ODI cricketers that have played the most matches.
