@@ -1,11 +1,12 @@
 from elasticsearch import Elasticsearch, helpers
 import json
 import re
+from fuzzywuzzy import process,fuzz
 
 es = Elasticsearch([{'host': '127.0.0.1', 'port':9200}])
 
 def keyword_search(query):
-    print(query)
+    # print(query)
     results = es.search(index='index-cricketers', body={
         "size": 10,
         "query": {
@@ -19,11 +20,86 @@ def keyword_search(query):
             }
         },
     })
-
-    return post_processing(results)
+    # print(results)
+    return results
 
 def top_search(query):
     cricketers= []
+    choices= [u"වැඩිම ලකුණු ලබාගත් ක්‍රීඩකයන්",u"වැඩිම කඩුලු ලබාගත් ක්‍රීඩකයන්",u"වැඩිම තරඟ ක්‍රීඩා කළ ක්‍රීඩකයන්"]
+    highest = process.extractOne(u'%s' % query, choices, scorer=fuzz.ratio)
+    matchIndex = choices.index(highest[0])
+    value = int(re.search(r'\d+', query).group())
+    if matchIndex == 0:
+        results = es.search(index='index-cricketers', body={
+            "size": 0,
+            "aggs": {
+                "user_agg": {
+                "terms": {
+                    "field": "name",
+                    "shard_size": 0, 
+                    "size": value,
+                    "order": {
+                        "sum_agg": "desc"
+                    }
+                },
+                "aggs": {
+                    "sum_agg": {
+                    "sum": {
+                        "field": "Runs"
+                    }
+                    }
+                }
+                }
+            }
+        })
+    elif matchIndex == 1:
+        results = es.search(index='index-cricketers', body={
+            "size": 0,
+            "aggs": {
+                "user_agg": {
+                "terms": {
+                    "field": "name",
+                    "shard_size": 0, 
+                    "size": value,
+                    "order": {
+                        "sum_agg": "desc"
+                    }
+                },
+                "aggs": {
+                    "sum_agg": {
+                    "sum": {
+                        "field": "Wickets"
+                    }
+                    }
+                }
+                }
+            }
+        })
+    else:
+        results = es.search(index='index-cricketers', body={
+            "size": 0,
+            "aggs": {
+                "user_agg": {
+                "terms": {
+                    "field": "name",
+                    "shard_size": 0, 
+                    "size": value,
+                    "order": {
+                        "sum_agg": "desc"
+                    }
+                },
+                "aggs": {
+                    "sum_agg": {
+                    "sum": {
+                        "field": "Matches"
+                    }
+                    }
+                }
+                }
+            }
+        })
+
+    print("top Search")
     return cricketers
 
 def post_processing(results):
@@ -34,7 +110,12 @@ def post_processing(results):
     return cricketers
 
 def search(query):
-    results = post_processing(keyword_search(query))
+    choices= [u"වැඩිම ලකුණු ලබාගත් ක්‍රීඩකයන්",u"වැඩිම කඩුලු ලබාගත් ක්‍රීඩකයන්",u"වැඩිම තරඟ ක්‍රීඩා කළ ක්‍රීඩකයන්"]
+    highest = process.extractOne(u'%s' % query, choices, scorer=fuzz.ratio)
+    if(highest[1]>50):
+        results = post_processing(top_search(query))
+    else:
+        results = post_processing(keyword_search(query))
     return results
 
 # if __name__ == "__main__":

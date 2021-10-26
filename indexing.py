@@ -8,7 +8,7 @@ es = Elasticsearch([{'host': '127.0.0.1', 'port':9200}])
 def indexing():
     with open('cricketers.json', encoding='utf8') as f:
         data = json.loads(f.read())
-    # print(data)
+    print(data)
     # helpers.bulk(es, data, index='index-actors')
     es.indices.create(
         request_timeout=60,
