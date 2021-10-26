@@ -1,4 +1,4 @@
-# IR CS4642 Project - ODI Cricketers Search
+# IR CS4642 Project - Sri Lankan ODI Cricketers Search
 - M.H. Lamahewage
 - 170342N
 
@@ -37,4 +37,4 @@ python app.py
 - Fuzzy string matching done using FuzzyWuzzy package which uses Levenshtein Distance.
 - BeautifulSoup4 used for scraping.
 - Data source: ESPNCricnfo - https://stats.espncricinfo.com/ci/engine/records/index.html
-- Corpus includes the top 100 ODI cricketers that have played the most matches.
+- Corpus includes the top 100 Sri Lankan ODI cricketers that have played the most matches.
