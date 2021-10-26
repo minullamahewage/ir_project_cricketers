@@ -14,8 +14,7 @@ def keyword_search(query):
                 "query": query,
                 "type": "best_fields",
                 "fields": [
-                    "Full_Name", "Full_Name_si", "Born", "Education","Matches","Runs","Average","Half-centuries",
-                    "Centuries","Wickets","Economy","Player_Bio"]
+                    "Full_Name", "Full_Name_si", "Born", "Education","Player_Bio"]
 
             }
         },
@@ -30,77 +29,30 @@ def top_search(query):
     matchIndex = choices.index(highest[0])
     value = int(re.search(r'\d+', query).group())
     if matchIndex == 0:
-        results = es.search(index='index-cricketers', body={
-            "size": 0,
-            "aggs": {
-                "user_agg": {
-                "terms": {
-                    "field": "name",
-                    "shard_size": 0, 
-                    "size": value,
-                    "order": {
-                        "sum_agg": "desc"
-                    }
-                },
-                "aggs": {
-                    "sum_agg": {
-                    "sum": {
-                        "field": "Runs"
-                    }
-                    }
-                }
-                }
-            }
+        results = es.search(index='index-cricketers', body=
+        {
+            "size": value,
+            "sort" : [
+                { "Runs" : "desc" }
+            ]
         })
     elif matchIndex == 1:
-        results = es.search(index='index-cricketers', body={
-            "size": 0,
-            "aggs": {
-                "user_agg": {
-                "terms": {
-                    "field": "name",
-                    "shard_size": 0, 
-                    "size": value,
-                    "order": {
-                        "sum_agg": "desc"
-                    }
-                },
-                "aggs": {
-                    "sum_agg": {
-                    "sum": {
-                        "field": "Wickets"
-                    }
-                    }
-                }
-                }
-            }
+        results = es.search(index='index-cricketers', body=
+        {
+            "size": value,
+            "sort" : [
+                { "Wickets" : "desc" }
+            ]
         })
     else:
-        results = es.search(index='index-cricketers', body={
-            "size": 0,
-            "aggs": {
-                "user_agg": {
-                "terms": {
-                    "field": "name",
-                    "shard_size": 0, 
-                    "size": value,
-                    "order": {
-                        "sum_agg": "desc"
-                    }
-                },
-                "aggs": {
-                    "sum_agg": {
-                    "sum": {
-                        "field": "Matches"
-                    }
-                    }
-                }
-                }
-            }
+        results = es.search(index='index-cricketers', body=
+        {
+            "size": value,
+            "sort" : [
+                { "Matches" : "desc" }
+            ]
         })
-
-    print("top Search")
-    return cricketers
+    return results
 
 def post_processing(results):
     cricketers = []

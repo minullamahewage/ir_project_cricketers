@@ -46,13 +46,13 @@ def indexing():
                                     }
                                 },
                                 },
-                    'Matches': {"type": "text"},
-                    'Runs': {"type": "text"},
-                    'Average': {"type": "text"},
-                    'Half-centuries': {"type": "text"},
-                    'Centuries': {"type": "text"},
-                    'Wickets': {"type": "text"},
-                    'Economy': {"type": "text"},
+                    'Matches': {"type": "integer"},
+                    'Runs': {"type": "integer"},
+                    'Average': {"type": "float"},
+                    'Half-centuries': {"type": "integer"},
+                    'Centuries': {"type": "integer"},
+                    'Wickets': {"type": "integer"},
+                    'Economy': {"type": "float"},
                     "Player_Bio": {"type": "text",
                                 "fields": {
                                     "keyword": {
