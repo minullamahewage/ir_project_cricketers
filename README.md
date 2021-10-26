@@ -6,6 +6,14 @@
 - `.\bin\elasticsearch.bat`
 - Run index.py to create the index in elastic search
 
+## Getting Started
+
+`git clone https://github.com/minullamahewage/ir_project_cricketers.git
+cd ir_project_cricketers
+pip install -r requirements.txt
+python indexing.py
+python app.py`
+
 
 ### Supported Search queries
 - Search by name
