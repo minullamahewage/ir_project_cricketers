@@ -8,6 +8,8 @@
 
 ## Getting Started
 
+- Tested on python 3.9.7 and elasticsearch 7.15
+
 ```commandline
 git clone https://github.com/minullamahewage/ir_project_cricketers.git
 
