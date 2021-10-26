@@ -1,4 +1,4 @@
-# IR CS Project - Cricketers Search
+# IR CS Project - ODI Cricketers Search
 
 ## Running elastic search
 - `.\bin\elasticsearch.bat`
@@ -12,3 +12,10 @@
 - වැඩිම ලකුණු ලබාගත් ක්‍රීඩකයන් [number] E.g වැඩිම ලකුණු ලබාගත් ක්‍රීඩකයන් 10
 - වැඩිම කඩුලු ලබාගත් ක්‍රීඩකයන් [number] E.g වැඩිම කඩුලු ලබාගත් ක්‍රීඩකයන් 15
 - වැඩිම තරඟ ක්‍රීඩා කළ ක්‍රීඩකයන් [number] E.g වැඩිම තරඟ ක්‍රීඩා කළ ක්‍රීඩකයන් 20
+
+
+### Additional Notes
+- Fuzzy string matching done using FuzzyWuzzy package which uses Levenshtein Distance.
+- BeautifulSoup4 used for scraping.
+- Data source: ESPNCrinfo
+- Corpus includes the top 100 ODI cricketers that have played the most matches.
