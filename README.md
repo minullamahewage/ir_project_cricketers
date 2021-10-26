@@ -4,7 +4,7 @@
 
 ## Running elastic search
 - `.\bin\elasticsearch.bat`
-- Run index.py to create the index in elastic search
+- Run indexing.py to create the index in elastic search
 
 ## Getting Started
 
