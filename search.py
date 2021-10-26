@@ -4,7 +4,7 @@ import re
 
 es = Elasticsearch([{'host': '127.0.0.1', 'port':9200}])
 
-def search(query):
+def keyword_search(query):
     print(query)
     results = es.search(index='index-cricketers', body={
         "size": 10,
@@ -22,12 +22,20 @@ def search(query):
 
     return post_processing(results)
 
+def top_search(query):
+    cricketers= []
+    return cricketers
+
 def post_processing(results):
     cricketers = []
     for i in range(len(results['hits']['hits'])):
         cricketers.append(results['hits']['hits'][i]['_source'])
 
     return cricketers
+
+def search(query):
+    results = post_processing(keyword_search(query))
+    return results
 
 # if __name__ == "__main__":
 #     print(search("පිතිකරු"))

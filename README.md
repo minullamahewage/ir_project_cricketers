@@ -1,4 +1,4 @@
-# ir_project_cricketers
+# IR CS Project - Cricketers Search
 
 ## Running elastic search
 - `.\bin\elasticsearch.bat`
@@ -9,3 +9,4 @@
 - Search by name
 - Search by school
 - Search player bio(playing role, batting style, bowling style)
+
