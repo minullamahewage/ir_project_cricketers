@@ -25,8 +25,9 @@ python app.py
 ### Web scraper included in the `cricket-scraper.ipynb` python notebook
 
 ### Supported Search queries
-- Search by name E.g ලසිත් මාලිංග
+- Search by name(English/Sinhala) E.g ලසිත් මාලිංග
 - Search by school E.g. ආනන්ද විද්‍යාලය
+- Search by year born
 - Search player bio(playing role, batting style, bowling style) E.g දකුණත් පිතිකරු, දකුණත් වේග පන්දු යවන
 - වැඩිම ලකුණු ලබාගත් ක්‍රීඩකයන් [number] E.g වැඩිම ලකුණු ලබාගත් ක්‍රීඩකයන් 10
 - වැඩිම කඩුලු ලබාගත් ක්‍රීඩකයන් [number] E.g වැඩිම කඩුලු ලබාගත් ක්‍රීඩකයන් 15
