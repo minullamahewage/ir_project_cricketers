@@ -27,7 +27,13 @@ def top_search(query):
     choices= [u"වැඩිම ලකුණු ලබාගත් ක්‍රීඩකයන්",u"වැඩිම කඩුලු ලබාගත් ක්‍රීඩකයන්",u"වැඩිම තරඟ ක්‍රීඩා කළ ක්‍රීඩකයන්"]
     highest = process.extractOne(u'%s' % query, choices, scorer=fuzz.ratio)
     matchIndex = choices.index(highest[0])
-    value = int(re.search(r'\d+', query).group())
+    value = 10
+    try:
+        if(int(re.search(r'\d+', query).group())):
+            value = int(re.search(r'\d+', query).group())
+    except:
+        print("No value given, using default value")
+
     if matchIndex == 0:
         results = es.search(index='index-cricketers', body=
         {
